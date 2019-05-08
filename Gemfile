@@ -7,3 +7,8 @@ gem "rake"
 gem "rack"  
 gem "sinatra-activerecord" 
 gem "sinatra-contrib"
+
+group :test, :development do
+  gem 'rack-test', require: "rack/test"
+  gem 'rspec'
+end
