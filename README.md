@@ -22,7 +22,7 @@ rake db:migrate
 
 ```
 
-###Running Locally
+### Running Locally
 ```
 bundle exec rackup -p 9292 config.ru
 ```
@@ -35,17 +35,17 @@ To run the tests execute the follow command in the root path of the project.
 rspec
 ```
 
-##Endpoints
+## Endpoints
 This project is currently providing a herokuapp for checking the results.
 
-###Local
+### Local
 ```
 localhost:4567/api/v1/emails
 localhost:4567/api/v1/emails/count
 localhost:4567/api/v1/emails/:id
 ```
 
-###Heroku
+### Heroku
 ```
 https://limitless-taiga-45801.herokuapp.com/api/v1/emails
 https://limitless-taiga-45801.herokuapp.com/api/v1/emails/count
