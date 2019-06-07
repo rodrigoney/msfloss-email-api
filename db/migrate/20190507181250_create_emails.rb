@@ -6,6 +6,12 @@ class CreateEmails < ActiveRecord::Migration[5.2]
       t.string :recipient
       t.datetime :date
       t.text :message
+      t.string :subject
+      t.string :message_id
+      t.string :in_reply_to
+      t.string :action
+      t.string :subsystem
+      t.string :subject_original 
     end
   end
 end
