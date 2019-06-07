@@ -30,12 +30,12 @@ bundle exec rackup -p 9292 config.ru
 
 ### Testing
 This project uses `rspec` for testing.
-To run the tests execute the follow command in the root path of the project.
+To run the tests execute the following command in the root path of the project.
 ```
 rspec
 ```
 
-##Endpoints
+## Endpoints
 This project is currently providing a herokuapp for checking the results.
 
 ### Local
