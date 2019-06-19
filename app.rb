@@ -18,6 +18,7 @@ class Email < ActiveRecord::Base
 	scope :subject_original_contains, -> (subject_original) { where("subject_original LIKE ?", "%" << subject_original << "%") if subject_original.present? }
 	scope :start_date, -> (start_date) { where("date >= ?", start_date) if start_date.present? }
 	scope :end_date, -> (end_date) { where("date <= ?", end_date) if end_date.present? }
+	scope :rolling_date, -> (subject) { where("subject = ?", subject) }
 end
 
 class EmailApi < Sinatra::Base
@@ -34,6 +35,24 @@ class EmailApi < Sinatra::Base
 
 		get "/" do
 			erb :index
+		end
+
+		get '/subjects' do
+			Email.pluck(:subject).to_json
+		end
+
+		post '/subject/times' do
+			subject = JSON.parse(request.body.read)['subject']
+			Email.where("subject = ?", subject)
+				 .select('MIN(subject) as subject,
+				 		  NOW() - MIN(date) as time_from_start, 
+				 		  NOW() - MAX(date) as time_from_last_reply,
+				 		  MAX(date) - MIN(date) as thread_duration')
+				 .to_json(:except => :email_id)
+		end
+
+		get '/emails/id/:email_id' do
+			Email.find(params[:email_id]).to_json
 		end
 
 		get '/emails' do
